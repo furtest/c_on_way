@@ -7,6 +7,8 @@ int main(void){
 	*el = *el | 1;
 	printf("%d\n", el_stat(map, 5, 5));
 	printf("%d\n", el_stat(map, 5, 0));
+	printf("%d\n", in_map(map, 0, 0));
+	printf("%d\n", in_map(map, 1, 1));
 	free_map(map);
 	return 0;
 }

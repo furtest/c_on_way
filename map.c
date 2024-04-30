@@ -47,3 +47,7 @@ char *m_el(const Map *map, size_t x, size_t y){
 bool el_stat(const Map *map, size_t x, size_t y){
 	return (bool) map->map[x][y] & 1;
 }
+
+bool in_map(const Map *map, size_t x, size_t y){
+	return ! (bool) map->map[x][y] & 127;
+}
