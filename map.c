@@ -4,22 +4,28 @@
 #include "map.h"
 
 Map *init_map(size_t size){
+	if(size <= 0){ return NULL; }
 	Map *map = malloc(sizeof(Map));
 	if(map == NULL){ return NULL; }
 	map->size = size;
-	map->map = calloc(size, sizeof(char*));
+	map->map = calloc(size+2, sizeof(char*));
 	if(map->map == NULL){ 
 		free(map);
 		return NULL;
 	};
-	for(size_t i = 0; i < size; ++i){
-		map->map[i] = calloc(size, sizeof(char));	
+	for(size_t i = 0; i < size+2; ++i){
+		map->map[i] = calloc(size+2, sizeof(char));	
 		if(map->map[i] == NULL){
 			for(;i > 0; --i){
 				free(map->map[i]);
 			}
 			free(map->map);
 			free(map);
+		}
+	}
+	for(size_t i = 0; i < size+2; i += size+1){
+		for(size_t j = 0; j < size+2; ++j){
+			map->map[i][j] = 128;
 		}
 	}
 	return map;
