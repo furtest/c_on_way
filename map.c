@@ -33,7 +33,7 @@ Map *init_map(size_t size){
 
 void free_map(Map *map){
 	if(map == NULL){ return; }
-	for(size_t i = 0; i < map->size; ++i){
+	for(size_t i = 0; i < map->size+2; ++i){
 		free(map->map[i]);
 	}
 	free(map->map);
@@ -41,9 +41,9 @@ void free_map(Map *map){
 }
 
 char *m_el(const Map *map, size_t x, size_t y){
-	return map->map[x] + y;
+	return map->map[x+1] + y+1;
 }
 
 bool el_stat(const Map *map, size_t x, size_t y){
-	return (bool) map->map[x][y] & 1;
+	return (bool) map->map[x+1][y+1] & 1;
 }
