@@ -52,13 +52,13 @@ void free_map(Map *map){
 }
 
 char *m_el(const Map *map, size_t x, size_t y){
-	return map->map[x] + y;
+	return map->map[x+1] + y+1;
 }
 
 bool el_stat(const Map *map, size_t x, size_t y){
-	return (bool) map->map[x][y] & 1;
+	return (bool) map->map[x+1][y+1] & 1;
 }
 
 bool in_map(const Map *map, size_t x, size_t y){
-	return ! (bool) map->map[x][y] & 127;
+	return ! (bool) map->map[x+1][y+1] & 127;
 }
