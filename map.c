@@ -60,5 +60,14 @@ bool el_stat(const Map *map, size_t x, size_t y){
 }
 
 bool in_map(const Map *map, size_t x, size_t y){
-	return ! (bool) map->map[x+1][y+1] & 127;
+	return ! ((bool) map->map[x+1][y+1] & 128);
 }
+
+int set_tmp(Map *map, size_t x, size_t y, bool state){
+	if(map == NULL){ return 1; }
+	if( ! in_map(map, x, y)){ return 2; }
+	// set tmp bit to 0 and or with the state (253 = 11111101)
+	map->map[x+1][y+1] = (map->map[x+1][y+1] & (char) 253) | (((char) state) << 1);
+	return 0;
+}
+	
