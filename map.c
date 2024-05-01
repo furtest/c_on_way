@@ -71,3 +71,9 @@ int set_tmp(Map *map, size_t x, size_t y, bool state){
 	return 0;
 }
 	
+int tmp_to_val(Map * map, size_t x, size_t y){
+	if(map == NULL){ return 1; }
+	if(! in_map(map, x, y)){ return 2; }
+	map->map[x+1][y+1] = (map->map[x+1][y+1] & (char) 254) | ((map->map[x+1][y+1] & 2) >> 1);
+	return 0;
+}
