@@ -1,4 +1,4 @@
-all : main.o map.o
+all : main.o map.o functions.o
 	gcc -Wall $^ -o dev
 
 functions.o : functions.c
