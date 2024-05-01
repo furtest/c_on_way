@@ -16,5 +16,6 @@ bool el_stat(const Map *map, size_t x, size_t y);
 bool in_map(const Map *map, size_t x, size_t y);
 int set_tmp(Map *map, size_t x, size_t y, bool state);
 int tmp_to_val(Map * map, size_t x, size_t y);
+int val_to_tmp(Map *map, size_t x, size_t y);
 
 #endif

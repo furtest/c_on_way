@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <wchar.h>
 #include <stdlib.h>
 
 #include "functions.h"
@@ -23,6 +24,7 @@ int evolve_map(Map *map){
 			// We apply the rules of the game
 			switch(aliveNeighbours){
 				case 2:
+					val_to_tmp(map, i, j);
 					break;
 				case 3:
 					set_tmp(map, i, j, true);
@@ -43,9 +45,11 @@ int evolve_map(Map *map){
 }
 
 void print_map(Map *map){
+	wchar_t dead = ' ';
+	wchar_t alive =  'O';
 	for(size_t i = 0; i < map->size; ++i){
 		for(size_t j = 0; j < map->size; ++j){
-			printf("%d ", el_stat(map, i, j));
+			printf("%c ", el_stat(map, i, j) ? alive : dead);
 		}
 		puts("");
 	}

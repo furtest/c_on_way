@@ -44,7 +44,7 @@ char *m_el(const Map *map, size_t x, size_t y){
 }
 
 bool el_stat(const Map *map, size_t x, size_t y){
-	return in_map(map, x, y) && ((bool) map->map[x][y] & 1);
+	return in_map(map, x, y) && ((bool) (map->map[x][y] & 1));
 }
 
 bool in_map(const Map *map, size_t x, size_t y){
@@ -63,5 +63,12 @@ int tmp_to_val(Map * map, size_t x, size_t y){
 	if(map == NULL){ return 1; }
 	if(! in_map(map, x, y)){ return 2; }
 	map->map[x][y] = (map->map[x][y] & (char) 254) | ((map->map[x][y] & 2) >> 1);
+	return 0;
+}
+
+int val_to_tmp(Map *map, size_t x, size_t y){
+	if(map == NULL){ return 1; }
+	if(! in_map(map, x, y)){ return 2; }
+	set_tmp(map, x, y, map->map[x][y] & 1);
 	return 0;
 }
