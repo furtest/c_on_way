@@ -56,11 +56,11 @@ char *m_el(const Map *map, size_t x, size_t y){
 }
 
 bool el_stat(const Map *map, size_t x, size_t y){
-	return (bool) map->map[x+1][y+1] & 1;
+	return in_map(map, x, y) && ((bool) map->map[x+1][y+1] & 1);
 }
 
 bool in_map(const Map *map, size_t x, size_t y){
-	return ! ((bool) map->map[x+1][y+1] & 128);
+	return (x < (map->size + 2) && y < (map->size + 2)) && ! ((bool) map->map[x+1][y+1] & 128);
 }
 
 int set_tmp(Map *map, size_t x, size_t y, bool state){
